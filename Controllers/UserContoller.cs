@@ -94,7 +94,7 @@ namespace Dotnet.Controllers
         {
             return "running";
         }
-        [HttpDelete("/del/{id}")]s
+        [HttpDelete("/del/{id}")]
         public async Task<ActionResult<string>> DeleteUser(string id)
         {
             var result = await service.deleteUser(id);
