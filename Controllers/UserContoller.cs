@@ -5,76 +5,103 @@ using Dotnet.Service;
 using System;
 using Dotnet.Utils;
 using Dotnet.DTOS;
-namespace Dotnet.Controllers{
+namespace Dotnet.Controllers
+{
     [ApiController]
     [Route("users")]
-    public class UserController : ControllerBase{
-            
-            private readonly InterfaceRepository service;
-            public UserController(InterfaceRepository int_repo){
-                service = int_repo;
-            }
+    public class UserController : ControllerBase
+    {
 
-            [HttpGet("all")]
-            public IEnumerable<UserDTO> GetUsers()
+        private readonly InterfaceRepository service;
+        public UserController(InterfaceRepository int_repo)
+        {
+            service = int_repo;
+        }
+
+        [HttpGet("all")]
+        public async Task<IEnumerable<UserDTO>> GetUsers()
+        {
+            UtilsService utils = new UtilsService();
+            List<User> users = await service.GetAllUsers();
+            return UtilsService.ToUserDTO(users);
+
+
+        }
+
+        [HttpPost("add")]
+        public ActionResult<UserDTO> AddUser(createUserDTO userd)
+        {
+
+            User user = new()
             {
-                //UtilsService utils = new UtilsService();
-                return UtilsService.ToUserDTO( service.GetAllUsers());   
-            }
 
-            [HttpPost("add")]
-            public ActionResult<UserDTO> AddUser(createUserDTO userdto){
-                
-                User user = new(){
-                    firstName=userdto.firstName,
-                    lastName=userdto.lastName,
-                    email=userdto.email,
-                    contactNumber=userdto.contactNumber,
-                    password=userdto.password
-                };
-                service.createUser(user);
-                return user.AsDTO();
-            }
-            [HttpGet("{firstName}")]
-            public ActionResult<UserDTO> GetUser(string firstName){
-                
-                User user =  service.GetUser(firstName);
-                
-                if(user == null){
+                firstName = userd.firstName,
+                lastName = userd.lastName,
+                email = userd.email,
+                contactNumber = userd.contactNumber,
+                password = userd.password
+            };
+            service.createUser(user);
+            return user.AsDTO();
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserDTO>> GetUser(string id)
+        {
+            try
+            {
+                List<User> users = await service.GetUser(id);
+
+                if (users.Count == 0)
+                {
                     return NotFound();
                 }
-                List<User> users = new List<User>();
-                
-                users.Add(user);
-                
-                return UtilsService.ToUserDTO( users)[0];
-            }
 
-            [HttpPut("{firstname}")]
-            public ActionResult<string> updateUser(string firstname , updateUserDTO dto){
-                User user = service.GetUser(firstname);
-                if(user == null){
-                    return NotFound();
-                }
-                User finaluser =  new User(){
-                       firstName=user.firstName,
-                       lastName=user.lastName,
-                       email=user.email,
-                       password=dto.password,
-                       contactNumber=user.contactNumber
-                };
-                updateUser(firstname ,finaluser);
-                return "user added successfully";
-            }
 
-            [HttpGet("/")]
-            public ActionResult<string> Default()
+                return users[0].AsDTO();
+            }
+            catch (Exception e)
             {
-                return "running";
+                throw new Exception(e.Message);
             }
-        
+        }
+
+        [HttpPut("{id}")]
+        public async Task<string> updateUser(string id, updateUserDTO dto)
+        {
+
+            List<User> user = await service.GetUser(id);
+            if (user.Count == 0)
+            {
+                return "No such user exists";
+            }
+            User finaluser = new User()
+            {
+                _id = user[0]._id,
+                firstName = user[0].firstName,
+                lastName = user[0].lastName,
+                email = user[0].email,
+                password = dto.password,
+                contactNumber = user[0].contactNumber
+            };
+
+            string result = await service.updateUser(id, finaluser);
+            if (result == null) { return "error adding user"; }
+            return "user added successfully";
+        }
+
+        [HttpGet("/")]
+        public ActionResult<string> Default()
+        {
+            return "running";
+        }
+        [HttpDelete("/del/{id}")]s
+        public async Task<ActionResult<string>> DeleteUser(string id)
+        {
+            var result = await service.deleteUser(id);
+            return NoContent();
+        }
+
 
     }
-
 
 }

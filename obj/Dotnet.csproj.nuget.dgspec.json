@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Dotnet\\Dotnet.csproj": {}
+    "D:\\Dotnet-Foodify-Rest-Api\\Dotnet.csproj": {}
   },
   "projects": {
-    "D:\\Dotnet\\Dotnet.csproj": {
+    "D:\\Dotnet-Foodify-Rest-Api\\Dotnet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Dotnet\\Dotnet.csproj",
+        "projectUniqueName": "D:\\Dotnet-Foodify-Rest-Api\\Dotnet.csproj",
         "projectName": "Dotnet",
-        "projectPath": "D:\\Dotnet\\Dotnet.csproj",
-        "packagesPath": "C:\\Users\\DARK VADER\\.nuget\\packages\\",
-        "outputPath": "D:\\Dotnet\\obj\\",
+        "projectPath": "D:\\Dotnet-Foodify-Rest-Api\\Dotnet.csproj",
+        "packagesPath": "C:\\Users\\92332\\.nuget\\packages\\",
+        "outputPath": "D:\\Dotnet-Foodify-Rest-Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DARK VADER\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\92332\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.14.1, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
