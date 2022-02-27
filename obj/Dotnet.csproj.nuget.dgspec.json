@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Dotnet-Foodify-Rest-Api\\Dotnet.csproj": {}
+    "C:\\Users\\Asus\\Work\\Dotnet\\Dotnet-Foodify-Rest-Api\\Dotnet.csproj": {}
   },
   "projects": {
-    "D:\\Dotnet-Foodify-Rest-Api\\Dotnet.csproj": {
+    "C:\\Users\\Asus\\Work\\Dotnet\\Dotnet-Foodify-Rest-Api\\Dotnet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Dotnet-Foodify-Rest-Api\\Dotnet.csproj",
+        "projectUniqueName": "C:\\Users\\Asus\\Work\\Dotnet\\Dotnet-Foodify-Rest-Api\\Dotnet.csproj",
         "projectName": "Dotnet",
-        "projectPath": "D:\\Dotnet-Foodify-Rest-Api\\Dotnet.csproj",
-        "packagesPath": "C:\\Users\\92332\\.nuget\\packages\\",
-        "outputPath": "D:\\Dotnet-Foodify-Rest-Api\\obj\\",
+        "projectPath": "C:\\Users\\Asus\\Work\\Dotnet\\Dotnet-Foodify-Rest-Api\\Dotnet.csproj",
+        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Asus\\Work\\Dotnet\\Dotnet-Foodify-Rest-Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\92332\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
