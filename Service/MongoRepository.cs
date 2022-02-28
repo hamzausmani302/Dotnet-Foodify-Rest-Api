@@ -68,7 +68,8 @@ public class MongoRepository : InterfaceRepository
     }
 
     public async  Task<string> updateRestaurant(string id , Restaurant restaurant){
-        return null;
+        var result = await restaurantsCollection.ReplaceOneAsync(restaurantfilter.Eq(item => item._id , id) , restaurant);
+        return result.ToString();
     }
 
     public async Task<string> deleteRestarant(string id){
@@ -77,5 +78,15 @@ public class MongoRepository : InterfaceRepository
     }
 
 
+    public async Task<string> updateMenu(string id , Item[] items){
+        var result = await restaurantsCollection.UpdateOneAsync(restaurantfilter.Eq("_id",id) , Builders<Restaurant>.Update.Set("menu",items) );
+        return result.ToString();
+    }
 
+    
+    public async Task<Restaurant> GetRestaurant(string id){
+        var _restaurant=  await restaurantsCollection.FindAsync<Restaurant>(restaurantfilter.Eq(item => item._id , id) );
+        Restaurant rest = await _restaurant.FirstOrDefaultAsync();
+       return rest;
+    }
 }

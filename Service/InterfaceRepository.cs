@@ -12,6 +12,7 @@ public interface InterfaceRepository
 
     //Restaurant controllers
     public Task<List<Restaurant>> GetRestaurants();
+    public Task<Restaurant> GetRestaurant(string id);
 
     public Task<Boolean> addRestaurant(Restaurant restaurant);
 
@@ -19,6 +20,7 @@ public interface InterfaceRepository
 
     public Task<string> deleteRestarant(string id);
 
+    public Task<string> updateMenu(string id , Item[] items);
 
 
 }
