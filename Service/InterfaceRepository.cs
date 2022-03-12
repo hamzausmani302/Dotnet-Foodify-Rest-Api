@@ -1,3 +1,4 @@
+using Dotnet.DTOS;
 using Dotnet.Models;
 namespace Dotnet.Service;
 public interface InterfaceRepository
@@ -5,6 +6,7 @@ public interface InterfaceRepository
     //User Controller 
     public Task<List<User>> GetAllUsers();
     public Task<List<User>> GetUser(string firstname);
+    public Task<User> GetUserByData(LoginUserDTO user);
     public User createUser(User user);
     public Task<string> updateUser(string id, User user);
 

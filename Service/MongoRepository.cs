@@ -27,6 +27,8 @@ public class MongoRepository : InterfaceRepository
     {
         return await usersCollection.Find(_ => true).ToListAsync();
     }
+
+    
     public async Task<List<User>> GetUser(string id)
     {
         return await usersCollection.Find(item => item._id == id).ToListAsync();
@@ -34,6 +36,11 @@ public class MongoRepository : InterfaceRepository
 
 
     }
+    public async Task<User> GetUserByData(LoginUserDTO user){
+        var result=  await usersCollection.FindAsync<User>(filter.And(  filter.Eq(item=>item.contactNumber , user.contactNumber)  , filter.Eq(item=>item.password , user.password)   )  );
+        return result.FirstOrDefault();
+    }
+    
     public User createUser(User user)
     {
         usersCollection.InsertOne(user);

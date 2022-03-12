@@ -44,6 +44,16 @@ namespace Dotnet.Controllers
             service.createUser(user);
             return user.AsDTO();
         }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<User>> Login(LoginUserDTO user){
+            var result = await service.GetUserByData(user);
+            if(result != null){
+                return result;
+            }
+            return NotFound();
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDTO>> GetUser(string id)
         {
