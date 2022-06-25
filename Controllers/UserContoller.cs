@@ -8,6 +8,7 @@ using Dotnet.DTOS;
 namespace Dotnet.Controllers
 {
     [ApiController]
+    
     [Route("users")]
     public class UserController : ControllerBase
     {
@@ -17,6 +18,7 @@ namespace Dotnet.Controllers
         {
             service = int_repo;
         }
+
 
         [HttpGet("all")]
         public async Task<IEnumerable<UserDTO>> GetUsers()
@@ -28,7 +30,7 @@ namespace Dotnet.Controllers
 
         }
 
-        [HttpPost("add")]
+        [HttpPost("signup")]
         public ActionResult<UserDTO> AddUser(createUserDTO userd)
         {
 
@@ -47,6 +49,7 @@ namespace Dotnet.Controllers
 
         [HttpPost("login")]
         public async Task<ActionResult<User>> Login(LoginUserDTO user){
+            Console.Write("request");
             var result = await service.GetUserByData(user);
             if(result != null){
                 return result;
@@ -110,7 +113,7 @@ namespace Dotnet.Controllers
             var result = await service.deleteUser(id);
             return NoContent();
         }
-
+        
 
     }
 
