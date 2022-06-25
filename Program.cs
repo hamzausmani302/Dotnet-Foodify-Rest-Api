@@ -7,7 +7,7 @@ builder.Services.Configure<MongoSettings>(
 builder.Configuration.GetSection("MongoSettings"));
 
 builder.Services.AddSingleton<InterfaceRepository, MongoRepository>();
-
+builder.Services.AddSingleton<OrderInterface , OrderRepository >();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
