@@ -49,8 +49,10 @@ namespace Dotnet.Controllers
 
         [HttpPost("login")]
         public async Task<ActionResult<User>> Login(LoginUserDTO user){
-            Console.Write("request");
+            Console.Write(user.contactNumber + user.password);
             var result = await service.GetUserByData(user);
+            // Console.Write(result.ToString());
+            
             if(result != null){
                 return result;
             }
